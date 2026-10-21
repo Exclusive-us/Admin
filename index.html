@@ -1,0 +1,144 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .admin-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 { margin-top: 0; color: #38bdf8; text-align: center; }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cmd-btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .cmd-btn:hover { opacity: 0.85; }
+        .btn-c { background-color: #2563eb; }
+        .btn-c2 { background-color: #d97706; }
+        .btn-f { background-color: #16a34a; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover { background-color: #7dd3fc; }
+        
+        .status-msg {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #34d399;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-card">
+        <h2>Remote Control Panel</h2>
+        
+        <!-- Formspark Admin Form Action -->
+        <form id="adminForm" action="https://submit-form.com/EGef8sATM" method="POST">
+            
+            <!-- Hidden Input to track which keyword button was clicked -->
+            <input type="hidden" id="keywordInput" name="keyword" value="C">
+
+            <div class="form-group">
+                <label>Select Action Command</label>
+                <div class="button-group">
+                    <button type="button" class="cmd-btn btn-c" onclick="setKeyword('C')">C</button>
+                    <button type="button" class="cmd-btn btn-c2" onclick="setKeyword('C2')">C2</button>
+                    <button type="button" class="cmd-btn btn-f" onclick="setKeyword('F')">F</button>
+                </div>
+                <div style="font-size: 12px; color: #94a3b8;">Active Command: <strong id="activeLabel" style="color: #38bdf8;">C</strong></div>
+            </div>
+
+            <div class="form-group">
+                <label for="customMessage">Custom Message (Optional)</label>
+                <textarea id="customMessage" name="message" placeholder="Type a custom instruction message to display on the user's screen..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Command to School App</button>
+        </form>
+        
+        <div id="successNotice" class="status-msg">Command sent successfully!</div>
+    </div>
+
+    <script>
+        // Function to dynamically update selected keyword state
+        function setKeyword(val) {
+            document.getElementById('keywordInput').value = val;
+            document.getElementById('activeLabel').textContent = val;
+            
+            // Visual active indicator feedback
+            document.querySelectorAll('.cmd-btn').forEach(btn => btn.style.outline = 'none');
+            event.target.style.outline = '3px solid white';
+        }
+    </script>
+</body>
+</html>
+
